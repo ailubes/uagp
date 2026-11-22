@@ -34,4 +34,4 @@ UAGP – відкрита дослідницька архітектура фед
 
 Початковий технічний напрям: HTTP API з OpenAPI, JSON Schema 2020-12 для структур даних, CloudEvents для федеративних подій та відокремлені механізми цифрової довіри.
 
-Повні робочі матеріали: [Хартія v0.4](https://docs.google.com/document/d/187GbeumjcKE7JLw_vxk-uLOCXqENJG-JU3TNQk9Optg/edit) і [RFC-UAGP-0001](https://docs.google.com/document/d/1n8BfMn5W1U_NESedHHNNdmEmN3bZjSbNDDXtghwXHF4/edit). Доступ до них може бути обмежений власником; публічні технічні RFC і формальні схеми поступово переноситимуться в репозиторій.
+Повні робочі матеріали опубліковано безпосередньо в GitHub: [Хартія v0.4](charter-full-v0.4.md) та [RFC-UAGP-0001](rfc/RFC-UAGP-0001.md). Публікація не означає затвердження нормативного документа чи завершення технічної реалізації.

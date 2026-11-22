@@ -1,5 +1,8 @@
 blank_issues_enabled: true
 contact_links:
+  - name: Почніть зі спільноти UAGP
+    url: https://github.com/ailubes/uagp/blob/main/docs/community/README.md
+    about: Як долучитися, що можна запропонувати та які є обмеження відкритого GitHub.
   - name: Питання про безпеку
     url: https://github.com/ailubes/uagp/security
-    about: Не публікуйте експлойти або секрети в відкритих issues.
+    about: Не публікуйте експлойти, ключі або персональні дані у відкритих issues.
