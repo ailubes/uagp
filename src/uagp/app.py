@@ -18,6 +18,7 @@ from .settings import Settings
 from .storage import Database
 from .civic import create_civic_router
 from .assistant import create_assistant_router
+from .portal import create_portal_router
 
 Delivery = Callable[[bytes, dict[str, str]], int]
 
@@ -181,4 +182,5 @@ def create_app(settings: Settings | None = None, delivery: Delivery | None = Non
 
     app.include_router(create_civic_router(settings))
     app.include_router(create_assistant_router(settings))
+    app.include_router(create_portal_router(settings.db_path))
     return app
