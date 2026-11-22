@@ -1,5 +1,5 @@
-# Local-only fictional demonstration. These credentials are public and unsafe.
-# DO NOT deploy this configuration to an internet-accessible environment.
+# Local-only fictional demonstration. All included credentials are public and unsafe.
+# NEVER expose this configuration to a public network.
 services:
   community-a:
     build: .
@@ -9,13 +9,13 @@ services:
       UAGP_PEER_URL: http://community-b:8000
       UAGP_DB_PATH: /data/uagp.db
       UAGP_OPERATOR_TOKEN: local-a-demo-token
+      UAGP_REVIEWER_TOKEN: local-a-reviewer-token
       UAGP_SHARED_KEY: local-only-shared-signing-key
       UAGP_POLICY_SIGNING_KEY: local-only-policy-signing-key
     volumes:
       - uagp-community-a:/data
     ports:
       - "127.0.0.1:8001:8000"
-
   community-b:
     build: .
     environment:
@@ -24,13 +24,13 @@ services:
       UAGP_PEER_URL: http://community-a:8000
       UAGP_DB_PATH: /data/uagp.db
       UAGP_OPERATOR_TOKEN: local-b-demo-token
+      UAGP_REVIEWER_TOKEN: local-b-reviewer-token
       UAGP_SHARED_KEY: local-only-shared-signing-key
       UAGP_POLICY_SIGNING_KEY: local-only-policy-signing-key
     volumes:
       - uagp-community-b:/data
     ports:
       - "127.0.0.1:8002:8000"
-
 volumes:
   uagp-community-a:
   uagp-community-b:

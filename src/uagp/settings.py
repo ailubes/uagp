@@ -18,6 +18,7 @@ class Settings:
     shared_key: str
     policy_signing_key: str
     peer_url: str = ""
+    reviewer_token: str = ""
 
     def __post_init__(self) -> None:
         if not NODE_ID.fullmatch(self.node_id) or not NODE_ID.fullmatch(self.peer_id):
@@ -30,6 +31,11 @@ class Settings:
             raise ValueError("Demo signing keys must be explicitly configured (>=16 chars).")
         if not self.db_path:
             raise ValueError("A separate database path is required per node.")
+        if self.reviewer_token and (
+            len(self.reviewer_token) < 12 or
+            self.reviewer_token == self.operator_token
+        ):
+            raise ValueError("Reviewer token must be distinct and at least 12 chars.")
 
     @classmethod
     def from_env(cls) -> "Settings":
@@ -41,4 +47,5 @@ class Settings:
             shared_key=os.environ["UAGP_SHARED_KEY"],
             policy_signing_key=os.environ["UAGP_POLICY_SIGNING_KEY"],
             peer_url=os.environ.get("UAGP_PEER_URL", ""),
+            reviewer_token=os.environ.get("UAGP_REVIEWER_TOKEN", ""),
         )
