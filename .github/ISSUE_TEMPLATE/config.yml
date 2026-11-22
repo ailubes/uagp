@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Питання про безпеку
+    url: https://github.com/ailubes/uagp/security
+    about: Не публікуйте експлойти або секрети в відкритих issues.
