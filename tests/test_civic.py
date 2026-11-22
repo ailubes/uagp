@@ -100,3 +100,61 @@ def test_no_publication_without_opt_in(tmp_path):
     assert c.post(f"/v1/civic/cases/{case}/review",headers=op,json={
         "verdict":"accept_demo","reason":"Hypothetical case reviewed positively"}).status_code==200
     assert c.post(f"/v1/civic/cases/{case}/publish",headers=review).status_code==409
+
+
+def test_reviewer_can_inspect_public_summary_but_not_private_text(tmp_path):
+    c, op, reviewer = setup(tmp_path)
+    _, case, _ = make_case(c, op, publish=True)
+    url = f"/v1/civic/cases/{case}/publication-review"
+    assert c.get(url, headers=op).status_code == 401
+    preview = c.get(url, headers=reviewer)
+    assert preview.status_code == 200
+    assert preview.json()["publication_requested"] is True
+    assert "Private text" not in str(preview.json())
+
+
+def test_appeal_keeps_original_and_appeal_motives(tmp_path):
+    c, op, reviewer = setup(tmp_path)
+    _, case, author = make_case(c, op)
+    first = "The fictional evidence is insufficient for this proposal"
+    assert c.post(f"/v1/civic/cases/{case}/review", headers=op, json={
+        "verdict": "reject_demo", "reason": first,
+    }).status_code == 200
+    assert c.post(f"/v1/civic/cases/{case}/appeal", headers=author, json={
+        "reason": "Additional evidence should be considered",
+    }).status_code == 200
+    assert c.post(f"/v1/civic/cases/{case}/appeal-decision", headers=reviewer, json={
+        "verdict": "uphold_demo",
+        "reason": "The independent test reviewer reconsidered the case",
+    }).status_code == 200
+    details = c.get(f"/v1/civic/cases/{case}", headers=author).json()
+    assert details["decision_reason"] == first
+    assert details["appeal_reason"] == "Additional evidence should be considered"
+    assert details["appeal_decision_reason"].startswith("The independent")
+
+
+def test_requested_clarification_preserves_case_id(tmp_path):
+    c, op, reviewer = setup(tmp_path)
+    r = c.post("/v1/civic/drafts", headers=op, json={
+        "category": "services", "scope": "community",
+        "problem": "Evening service hours are inconvenient for residents",
+    })
+    assert r.status_code == 201
+    draft, author = r.json()["draft_id"], {"X-UAGP-Author-Key": r.json()["author_key"]}
+    def clarify_and_confirm(goal):
+        assert c.post(f"/v1/civic/drafts/{draft}/clarify", headers=author, json={
+            "desired_outcome": goal, "legal_kind": "policy_idea",
+        }).status_code == 200
+        preview = c.get(f"/v1/civic/drafts/{draft}/preview", headers=author).json()
+        assert c.post(f"/v1/civic/drafts/{draft}/confirm", headers=author, json={
+            "preview_fingerprint": preview["preview_fingerprint"],
+        }).status_code == 200
+    clarify_and_confirm("Improve citizens access to existing services")
+    original = c.post(f"/v1/civic/drafts/{draft}/submit", headers=author).json()["case_id"]
+    assert c.post(f"/v1/civic/cases/{original}/review", headers=op, json={
+        "verdict": "request_clarification",
+        "reason": "Please explain the exact desired improvement",
+    }).status_code == 200
+    clarify_and_confirm("Extend city hall opening hours into the evening")
+    same = c.post(f"/v1/civic/drafts/{draft}/submit", headers=author).json()["case_id"]
+    assert original == same
