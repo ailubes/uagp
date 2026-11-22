@@ -11,6 +11,8 @@
     "publication_requested",
     "published",
     "decision_reason",
+    "appeal_reason",
+    "appeal_decision_reason",
     "outcome_observation",
     "events",
     "official_submission"
@@ -62,6 +64,18 @@
     },
     "official_submission": {
       "const": false
+    },
+    "appeal_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "appeal_decision_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
     }
   }
 }
