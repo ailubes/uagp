@@ -17,6 +17,7 @@ from .policy import authorize_demo_tool, canonical_json, sign_document, verify_d
 from .settings import Settings
 from .storage import Database
 from .civic import create_civic_router
+from .assistant import create_assistant_router
 
 Delivery = Callable[[bytes, dict[str, str]], int]
 
@@ -179,4 +180,5 @@ def create_app(settings: Settings | None = None, delivery: Delivery | None = Non
         return authorize_demo_tool(payload, settings.policy_signing_key)
 
     app.include_router(create_civic_router(settings))
+    app.include_router(create_assistant_router(settings))
     return app
