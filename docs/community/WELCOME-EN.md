@@ -24,4 +24,4 @@ The full documentation is written primarily in Ukrainian. Contributions in Engli
 
 ## Current limitations
 
-The prototype backend, civic protocol, AI assistant, MCP bridge and portal are under review in Draft PRs #7–#10. They are not suitable for real personal cases. The project license is not yet selected, and contributions cannot be automatically accepted until their legal terms are clear.
+The prototype backend, civic protocol, AI assistant, MCP bridge and portal are under review in Draft PRs #7–#10. They are not suitable for real personal cases. Original code is [Apache-2.0 licensed](../../LICENSE), original documentation is [CC BY 4.0 licensed](../../LICENSE-DOCS.md), and [license scope and contributor rights](../../LICENSING.md) must be observed. Third-party works retain their own rights.
