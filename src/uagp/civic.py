@@ -102,6 +102,8 @@ class CivicStore:
                     share_federated_category INTEGER NOT NULL DEFAULT 0,
                     published INTEGER NOT NULL DEFAULT 0,
                     decision_reason TEXT,
+                    appeal_reason TEXT,
+                    appeal_decision_reason TEXT,
                     outcome_observation TEXT,
                     created_at TEXT NOT NULL,
                     updated_at TEXT NOT NULL
@@ -121,6 +123,11 @@ class CivicStore:
                 ON civic_audit(draft_id, seq);
                 """
             )
+            # Preserve SQLite volumes created by earlier sandbox versions.
+            existing = {r["name"] for r in conn.execute("PRAGMA table_info(civic_drafts)")}
+            for column in ("appeal_reason", "appeal_decision_reason"):
+                if column not in existing:
+                    conn.execute(f"ALTER TABLE civic_drafts ADD COLUMN {column} TEXT")
 
     @contextmanager
     def db(self, write: bool = False) -> Iterator[sqlite3.Connection]:
@@ -340,7 +347,7 @@ def create_civic_router(settings: Settings) -> APIRouter:
             row = store.authorized(conn, "id", draft_id, author_key)
             if row["status"] != "confirmed":
                 raise HTTPException(409, detail="Confirmed draft required")
-            case_id = str(uuid4())
+            case_id = row["case_id"] or str(uuid4())
             store.audit(conn, row, "sandbox_submitted", "citizen", "submitted_demo")
             conn.execute(
                 """UPDATE civic_drafts SET status='submitted_demo', case_id=?,
@@ -372,6 +379,8 @@ def create_civic_router(settings: Settings) -> APIRouter:
                 "publication_requested": bool(row["request_publication"]),
                 "published": bool(row["published"]),
                 "decision_reason": row["decision_reason"],
+                "appeal_reason": row["appeal_reason"],
+                "appeal_decision_reason": row["appeal_decision_reason"],
                 "outcome_observation": row["outcome_observation"],
                 "events": store.events(conn, row["id"]),
                 "official_submission": False,
@@ -420,7 +429,7 @@ def create_civic_router(settings: Settings) -> APIRouter:
             store.audit(conn, row, "author_appealed", "citizen", "appealed_demo")
             conn.execute(
                 """UPDATE civic_drafts SET status='appealed_demo',
-                decision_reason=?, updated_at=? WHERE case_id=?""",
+                appeal_reason=?, updated_at=? WHERE case_id=?""",
                 (body.reason, now_utc(), case_id),
             )
         return {"case_id": case_id, "status": "appealed_demo", "legal_effect": "none"}
@@ -445,11 +454,32 @@ def create_civic_router(settings: Settings) -> APIRouter:
                 raise HTTPException(409, detail="Formal legal routes require external authority")
             store.audit(conn, row, "independent_appeal_review", "demo_reviewer", final_status)
             conn.execute(
-                """UPDATE civic_drafts SET status=?, decision_reason=?, updated_at=?
+                """UPDATE civic_drafts SET status=?, appeal_decision_reason=?, updated_at=?
                 WHERE case_id=?""",
                 (final_status, payload.reason, now_utc(), case_id),
             )
         return {"case_id": case_id, "status": final_status, "legal_effect": "none"}
+
+    @router.get("/cases/{case_id}/publication-review")
+    def reviewer_publication_preview(
+        case_id: str, _: None = Depends(reviewer_only)
+    ) -> dict:
+        # Reviewer can inspect the proposed PUBLIC content before publication.
+        # The private problem statement and author capability never leave this boundary.
+        with store.db() as conn:
+            row = store.find(conn, "case_id", case_id)
+            if row is None:
+                raise HTTPException(404, detail="Unknown sandbox case")
+            return {
+                "case_id": case_id,
+                "category": row["category"],
+                "scope": row["scope"],
+                "publication_requested": bool(row["request_publication"]),
+                "public_summary": row["public_summary"],
+                "status": row["status"],
+                "privacy_warning": "Human review required before publication",
+                "official_submission": False,
+            }
 
     @router.post("/cases/{case_id}/publish")
     def publish(
