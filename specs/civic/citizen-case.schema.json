@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UAGP Private Civic Case v0.2",
+  "description": "Private author-only response, never federated or publicly exposed.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "status",
+    "private_preview",
+    "publication_requested",
+    "published",
+    "decision_reason",
+    "appeal_reason",
+    "appeal_decision_reason",
+    "outcome_observation",
+    "events",
+    "official_submission"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "status": {
+      "enum": [
+        "submitted_demo",
+        "needs_clarification",
+        "accepted_demo",
+        "rejected_demo",
+        "appealed_demo",
+        "appeal_denied_demo",
+        "outcome_recorded_demo"
+      ]
+    },
+    "private_preview": {
+      "type": "object",
+      "description": "May contain sensitive content; private author-only",
+      "additionalProperties": true
+    },
+    "publication_requested": {
+      "type": "boolean"
+    },
+    "published": {
+      "type": "boolean"
+    },
+    "decision_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "outcome_observation": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "official_submission": {
+      "const": false
+    },
+    "appeal_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "appeal_decision_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

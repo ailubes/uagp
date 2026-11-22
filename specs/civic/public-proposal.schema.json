@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UAGP Public Proposal Card v0.2",
+  "description": "Sandbox published proposal after explicit author request and human reviewer moderation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "category",
+    "scope",
+    "public_summary",
+    "status",
+    "sandbox"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "category": {
+      "enum": [
+        "transport",
+        "energy",
+        "services",
+        "other"
+      ]
+    },
+    "scope": {
+      "enum": [
+        "community",
+        "intercommunity",
+        "krai_concept",
+        "national"
+      ]
+    },
+    "public_summary": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 600
+    },
+    "status": {
+      "const": "demo_published"
+    },
+    "sandbox": {
+      "const": true
+    }
+  }
+}

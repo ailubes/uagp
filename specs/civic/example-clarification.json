@@ -1,0 +1,8 @@
+{
+  "category": "transport",
+  "scope": "intercommunity",
+  "problem": "Автобус прибуває після відправлення електрички.",
+  "desired_outcome": "Зменшити очікування пересадки для пасажирів.",
+  "proposed_solution": "Перевірити розклади автобусів та електричок.",
+  "legal_kind": "policy_idea"
+}

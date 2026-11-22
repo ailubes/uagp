@@ -16,6 +16,7 @@ from .models import Confirmation, DraftInput, FederationEvent, PolicyCheck
 from .policy import authorize_demo_tool, canonical_json, sign_document, verify_document
 from .settings import Settings
 from .storage import Database
+from .civic import create_civic_router
 
 Delivery = Callable[[bytes, dict[str, str]], int]
 
@@ -177,4 +178,5 @@ def create_app(settings: Settings | None = None, delivery: Delivery | None = Non
         # Checks only: no real tools or registries can be executed.
         return authorize_demo_tool(payload, settings.policy_signing_key)
 
+    app.include_router(create_civic_router(settings))
     return app
