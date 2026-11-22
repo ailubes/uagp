@@ -8,6 +8,12 @@
 
 **English:** UAGP is an open civic research project exploring citizen-driven, federated, AI-assisted governance for Ukraine. It is not a public authority, a political party, an official submission portal, or a deployed autonomous government.
 
+## Наступна стратегічна мета: UAGP Living Practice 90
+
+Починаємо не з наступного AI-модуля, а з **дослідницької програми співпраці з 2–3 уже активними громадянськими спільнотами**. Протягом пропонованих 90 днів від погодженого старту хочемо перевірити, чи допомагає UAGP людям координуватися, отримувати змістовний зворотний зв'язок, документувати перешкоди та досягати перевірних результатів без примусу переходити на нову платформу. Реальні партнери та стартова дата ще **не підтверджені**.
+
+[Повний стратегічний план](docs/strategy/LIVING-PRACTICE-90.md) · [Як обирати спільноти](docs/strategy/COMMUNITY-SELECTION.md) · [Картка ініціативи](docs/strategy/PILOT-CARD-TEMPLATE.md) · [Незалежне оцінювання](docs/strategy/EVALUATION.md).
+
 ## Долучитися може кожен
 
 | Я хочу… | З чого почати |
