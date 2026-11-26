@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-26T13:21:12Z",
+  "title": "Design System: UAGP Public Workspace",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Quiet civic indigo"
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "White workspace"
+      },
+      "sidebar": {
+        "role": "neutral",
+        "displayName": "Cool paper"
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Deep graphite"
+      },
+      "success": {
+        "role": "semantic",
+        "displayName": "Open issue green"
+      },
+      "draft": {
+        "role": "semantic",
+        "displayName": "Draft violet"
+      },
+      "caution": {
+        "role": "semantic",
+        "displayName": "Snapshot caution"
+      }
+    },
+    "motion": [
+      {
+        "name": "control-transition",
+        "value": "150ms ease",
+        "purpose": "State change only"
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact",
+        "value": "1250px"
+      },
+      {
+        "name": "overview-stack",
+        "value": "1080px"
+      },
+      {
+        "name": "mobile-nav",
+        "value": "800px"
+      },
+      {
+        "name": "mobile-rows",
+        "value": "540px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Start a voluntary action",
+      "html": "<button class=\"ds-primary\">Запропонувати ідею</button>",
+      "css": ".ds-primary {background:#5547b8;color:#fff;border:1px solid #5547b8;border-radius:8px;padding:8px 13px;font:600 13px/1.4 system-ui;min-height:36px}.ds-primary:hover{background:#4537a4}.ds-primary:focus-visible{outline:2px solid #7062cd;outline-offset:3px}"
+    },
+    {
+      "name": "Secondary action",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Read or inspect source",
+      "html": "<button class=\"ds-secondary\">Переглянути GitHub</button>",
+      "css": ".ds-secondary{background:#fff;color:#20232e;border:1px solid #c9cdd6;border-radius:8px;padding:8px 13px;font:600 13px/1.4 system-ui;min-height:36px}.ds-secondary:hover{background:#f2f3f6}.ds-secondary:focus-visible{outline:2px solid #7062cd;outline-offset:3px}"
+    },
+    {
+      "name": "Selected navigation",
+      "kind": "nav",
+      "description": "Current workspace section",
+      "html": "<a class=\"ds-nav\" href=\"#issues\">Відкриті питання</a>",
+      "css": ".ds-nav{display:block;background:#eeebfa;color:#5547b8;border-radius:6px;padding:8px 10px;font:650 13px/1.4 system-ui;text-decoration:none}.ds-nav:focus-visible{outline:2px solid #7062cd;outline-offset:3px}"
+    },
+    {
+      "name": "Search",
+      "kind": "input",
+      "description": "Search public records",
+      "html": "<input class=\"ds-search\" type=\"search\" placeholder=\"Назва або #номер\" aria-label=\"Пошук\">",
+      "css": ".ds-search{border:1px solid #c9cdd6;border-radius:8px;padding:10px 12px;font:14px system-ui;background:#fff;color:#20232e}.ds-search:focus{border-color:#7062cd;outline:2px solid #eeebfa}"
+    },
+    {
+      "name": "Draft state",
+      "kind": "chip",
+      "description": "Working PR, not an accepted decision",
+      "html": "<span class=\"ds-draft\">Чернетка</span>",
+      "css": ".ds-draft{color:#7861ae;font:560 11px/1.4 system-ui}"
+    },
+    {
+      "name": "Source notice",
+      "kind": "custom",
+      "description": "Dated snapshot fallback",
+      "html": "<div class=\"ds-source\">Збережений знімок · статуси можуть бути застарілими</div>",
+      "css": ".ds-source{border:1px solid #e9d8b6;background:#fff9ed;color:#795410;border-radius:8px;padding:10px 13px;font:11.5px/1.55 system-ui}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Відкритий журнал спільної роботи",
+    "overview": "Restrained technical workspace approved by the project owner, with source-grounded statuses and real contribution routes.",
+    "keyCharacteristics": [
+      "Ukrainian UI",
+      "Flat neutral workspace",
+      "Explicit source and status",
+      "Accessible interaction"
+    ],
+    "rules": [
+      {
+        "name": "Source status",
+        "body": "Never represent a draft or cached snapshot as an approved or live record.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do show actual GitHub statuses and dates.",
+      "Do use visible focus and clear actions."
+    ],
+    "donts": [
+      "Don't invent activity or coordinators.",
+      "Don't require AI for reading."
+    ]
+  }
+}
