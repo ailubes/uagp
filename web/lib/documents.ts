@@ -11,6 +11,7 @@ type StoredDocument = {
   stage: "main" | "draft";
   sha: string;
   content: string;
+  capturedAt?: string;
 };
 export interface DocumentInfo extends StoredDocument {
   source: "github" | "snapshot";
@@ -57,5 +58,5 @@ export async function getDocument(slug: string): Promise<DocumentInfo | null> {
       return { ...doc, ...remote, source: "github" };
     } catch { /* dated, explicit read-only fallback */ }
   }
-  return { ...doc, source: "snapshot", capturedAt: archive.capturedAt };
+  return { ...doc, source: "snapshot", capturedAt: doc.capturedAt ?? archive.capturedAt };
 }

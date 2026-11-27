@@ -19,7 +19,7 @@ export function ProposalDraft() {
     setMessage("Чернетку підготовлено для завантаження. Нічого не надіслано на сервер.");
   }
   return <div id="proposal" className="proposal-panel">
-    <div className="section-heading"><div><h2>Підготуйте власну пропозицію</h2><p>Без реєстрації, без AI та без надсилання даних.</p></div></div>
+    <div className="section-heading"><div><h2>Підготуйте картку вручну</h2><p>Заповніть поля своїми словами та збережіть чернетку. Правила розгляду однакові для обох способів підготовки.</p></div></div>
     <div className="privacy-note"><ShieldCheck size={20}/><p>Використовуйте тільки знеособлену інформацію, яку можна оприлюднити. Текст не зберігається на сервері. Для розгляду передайте фінальну картку в закриту чергу.</p></div>
     <form className="draft-form" onSubmit={download}>
       <label htmlFor="draft-title">Назва пропозиції <span>*</span></label>
