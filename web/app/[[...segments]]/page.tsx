@@ -132,7 +132,7 @@ function Strategy({data}:{data:CatalogResult}) {
 
 function Join() {
   return <>
-    <PageHeading title={<>Долучитися до <em>UAGP</em></>} description="Почніть із конкретної справи. Читання і пошук відкриті для всіх; участь добровільна, AI необов'язковий.">
+    <PageHeading title={<>Долучитися до <em>UAGP</em></>} description="Радимо почати зі свого чату. AI-асистент допоможе уточнити ідею й скласти картку. Цю саму картку можна підготувати вручну.">
       <Link className="button primary" href="/join/chat">Підготувати пропозицію у своєму чаті <ArrowRight size={16}/></Link>
     </PageHeading>
     <div className="join-layout">

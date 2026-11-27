@@ -14,7 +14,7 @@ UAGP is **not** an official government service, a political party, an electoral 
 
 [Start here in Ukrainian](START-HERE.md) · [Community principles](PRINCIPLES.md) · [Public issue tracker](https://github.com/ailubes/uagp/issues) · [Open Charter overview](../charter.md) · [Contributor guidelines](../../CONTRIBUTING.md).
 
-GitHub can be read without an account but requires one for issues and comments. An independent, self-hosted UAGP identity provider and a non-GitHub citizen participation channel are planned, **not deployed**. AI subscriptions are optional: citizens should be able to participate manually or bring their own compatible model.
+We recommend drafting your proposal in a chat with an AI assistant you already use. It can ask clarifying questions and help you put your idea into words. You can also fill out the same card by hand. When a UAGP web instance is available, submit only the approved card to private review. Publication to GitHub requires review and separate author consent. [Participation guide](START-HERE.md).
 
 ## Core commitments
 
