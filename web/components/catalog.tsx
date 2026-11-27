@@ -1,5 +1,5 @@
 "use client";
-import { useDeferredValue, useMemo, useState } from "react";
+import { useDeferredValue, useMemo, useState, type ReactNode } from "react";
 import { Search, SlidersHorizontal, X, CircleHelp } from "lucide-react";
 import { categories, filterItems, type Category, type Filters, type Item, type Kind, type Status } from "@/lib/model";
 import { ItemList } from "./workspace";
@@ -11,7 +11,7 @@ const solutionTabs: {value:Status|"all";label:string}[] = [
   {value:"all",label:"Усі"},{value:"draft",label:"Чернетки"},{value:"review",label:"До розгляду"},{value:"merged",label:"Злиті"},{value:"closed",label:"Закриті без злиття"},
 ];
 
-export function Catalog({items,kind,initialQuery=""}:{items:Item[];kind:Kind;initialQuery?:string}) {
+export function Catalog({items,kind,initialQuery="",action}:{items:Item[];kind:Kind;initialQuery?:string;action?:ReactNode}) {
   const [query,setQuery]=useState(initialQuery);
   const [status,setStatus]=useState<Status|"all">("all");
   const [category,setCategory]=useState<Category|"all">("all");
@@ -23,8 +23,11 @@ export function Catalog({items,kind,initialQuery=""}:{items:Item[];kind:Kind;ini
   const reset=()=>{setQuery("");setStatus("all");setCategory("all");setAssignment("all");setSort("updated");};
   return <section className="catalog" aria-label={kind==="issue"?"Реєстр питань":"Реєстр запропонованих змін"}>
     <div className="catalog-toolbar">
-      <div className="status-tabs" role="group" aria-label="Фільтр за станом">
-        {tabs.map(tab=><button key={tab.value} type="button" className={"tab"+(status===tab.value?" active":"")} aria-pressed={status===tab.value} onClick={()=>setStatus(tab.value)}>{tab.label}<span>{items.filter(i=>tab.value==="all"||i.status===tab.value).length}</span></button>)}
+      <div className="catalog-actions">
+        <div className="status-tabs" role="group" aria-label="Фільтр за станом">
+          {tabs.map(tab=><button key={tab.value} type="button" className={"tab"+(status===tab.value?" active":"")} aria-pressed={status===tab.value} onClick={()=>setStatus(tab.value)}>{tab.label}<span>{items.filter(i=>tab.value==="all"||i.status===tab.value).length}</span></button>)}
+        </div>
+        {action}
       </div>
       <div className="filters">
         <div className="search-field"><Search size={18}/><label className="sr-only" htmlFor="catalog-search">Пошук за номером, назвою або змістом</label><input id="catalog-search" type="search" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Назва, зміст або #номер" autoComplete="off"/>{query?<button type="button" className="icon-button" onClick={()=>setQuery("")} aria-label="Очистити пошук"><X size={15}/></button>:null}</div>

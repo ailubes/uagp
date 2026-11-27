@@ -1,5 +1,6 @@
+import { AtlasSection } from "@/components/civic/public-layout";
 import Link from "next/link";
-import { Shell, PageHeading } from "@/components/workspace";
+import { PageHeading } from "@/components/workspace";
 export default function NotFound() {
-  return <Shell active="" title="Не знайдено"><PageHeading title="Запис не знайдено" description="Запитаний запис не знайдено у доступному каталозі. Якщо джерело недоступне, скористайтеся GitHub."/><div className="inline-actions"><Link className="button primary" href="/issues">Переглянути питання</Link><Link className="button secondary" href="/">На головну</Link><a className="button secondary" href="https://github.com/ailubes/uagp">GitHub</a></div></Shell>;
+  return <AtlasSection><PageHeading title="Запис не знайдено" description="Запитаний запис не знайдено у доступному каталозі. Якщо джерело недоступне, скористайтеся GitHub."/><div className="inline-actions"><Link className="button primary" href="/issues">Переглянути питання</Link><Link className="button secondary" href="/">На головну</Link><a className="button secondary" href="https://github.com/ailubes/uagp">GitHub</a></div></AtlasSection>;
 }

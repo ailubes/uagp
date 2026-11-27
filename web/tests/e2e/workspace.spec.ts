@@ -4,7 +4,7 @@ test("overview loads real dated catalogue without login", async ({page},testInfo
   const errors:string[]=[];
   page.on("pageerror",error=>errors.push(error.message));
   await page.goto("/");
-  await expect(page.getByRole("heading",{name:"Робочий простір",exact:true})).toBeVisible();
+  await expect(page.getByRole("heading",{name:"Атлас участі",exact:true})).toBeVisible();
   await expect(page.getByRole("status").filter({hasText:"знімок даних"})).toBeVisible();
   await expect(page.getByRole("heading",{name:"Відкриті питання",exact:true})).toBeVisible();
   await expect(page.getByRole("heading",{name:"Запропоновані зміни",exact:true})).toBeVisible();
@@ -14,9 +14,14 @@ test("overview loads real dated catalogue without login", async ({page},testInfo
 });
 
 test("search by number, empty state and reset; see issue detail",async({page},testInfo)=>{
-  await page.goto("/issues");
+  await page.goto("/");
+  const quickSearch = page.getByRole("searchbox",{name:"Шукати питання"});
+  await quickSearch.fill("#22");
+  await quickSearch.press("Enter");
+  await expect(page).toHaveURL(/\/issues\?q=%2322$/);
+  await expect(page.getByRole("heading",{level:1,name:"Робочий реєстр"})).toBeVisible();
   const search=page.getByRole("searchbox",{name:"Пошук за номером, назвою або змістом"});
-  await search.fill("#22");
+  await expect(search).toHaveValue("#22");
   await expect(page.getByRole("link",{name:/^#22 Participation Steward/})).toBeVisible();
   await expect(page.locator(".item-list .item-row")).toHaveCount(1);
   await page.screenshot({path:testInfo.outputPath("issue-search.png"),fullPage:true});

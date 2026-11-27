@@ -1,7 +1,7 @@
 "use client";
 import { useState, type FormEvent } from "react";
 import { Download, ArrowUpRight, ShieldCheck } from "lucide-react";
-import { REPO } from "@/lib/model";
+import Link from "next/link";
 
 export function ProposalDraft() {
   const [title,setTitle]=useState("");
@@ -20,7 +20,7 @@ export function ProposalDraft() {
   }
   return <div id="proposal" className="proposal-panel">
     <div className="section-heading"><div><h2>Підготуйте власну пропозицію</h2><p>Без реєстрації, без AI та без надсилання даних.</p></div></div>
-    <div className="privacy-note"><ShieldCheck size={20}/><p>Використовуйте тільки знеособлену інформацію, яку можна оприлюднити. Текст не зберігається на сервері. Щоб опублікувати його, потрібно окремо підтвердити дію в GitHub.</p></div>
+    <div className="privacy-note"><ShieldCheck size={20}/><p>Використовуйте тільки знеособлену інформацію, яку можна оприлюднити. Текст не зберігається на сервері. Для розгляду передайте фінальну картку в закриту чергу.</p></div>
     <form className="draft-form" onSubmit={download}>
       <label htmlFor="draft-title">Назва пропозиції <span>*</span></label>
       <input id="draft-title" required maxLength={140} value={title} onChange={e=>setTitle(e.target.value)} placeholder="Наприклад, узгодження розкладів транспорту"/>
@@ -30,7 +30,7 @@ export function ProposalDraft() {
       <textarea id="draft-outcome" required maxLength={2000} rows={3} value={outcome} onChange={e=>setOutcome(e.target.value)} placeholder="Який результат можна буде перевірити?"/>
       <label htmlFor="draft-solution">Ваша ідея рішення (необов'язково)</label>
       <textarea id="draft-solution" maxLength={3000} rows={3} value={solution} onChange={e=>setSolution(e.target.value)} placeholder="Можливі кроки, альтернативи або запитання"/>
-      <div className="draft-actions"><button className="button primary" type="submit"><Download size={17}/> Завантажити чернетку</button><a className="button secondary" href={REPO+"/issues/new/choose"}>Відкрити GitHub <ArrowUpRight size={16}/></a></div>
+      <div className="draft-actions"><button className="button primary" type="submit"><Download size={17}/> Завантажити чернетку</button><Link className="button secondary" href="/join/card">Передати погоджену картку <ArrowUpRight size={16}/></Link></div>
       <p className="form-message" role="status">{message}</p>
     </form>
   </div>;

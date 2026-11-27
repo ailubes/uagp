@@ -21,7 +21,7 @@ A source-grounded collaboration engine, not a marketing landing page, an officia
 Repository: ailubes/uagp. WEB-001 (#29), Participation Steward (#22), independent self-hosted OIDC (#14), Living Practice 90 (draft PR #24), articles 88-1 and 88-2 (draft PRs #21 and #23). Published drafts are explicitly distinguished from merged documents. GitHub remains the initial public source of truth.
 
 ## Capabilities and Constraints
-First iteration: public read-only workspace, searchable catalogues, item detail, source-grounded documents, role-based contribution routes and private local drafting. GitHub is required only for actions that take place on GitHub. The site has no native write permissions, no accounts, no intake of private administrative cases, no analytics or tracking, and no embedded demo tokens. Independent OIDC, native participation, remote MCP and Participation Steward are later phases subject to privacy/security review.
+First iteration: public read-only workspace, searchable catalogues, item detail, source-grounded documents, role-based contribution routes and private local drafting. GitHub is required only for actions that take place on GitHub. The private proposal queue accepts an explicitly confirmed card. Authors follow a private receipt link. A reviewer can publish the exact approved version to GitHub only after separate author consent. The pilot uses a reviewer key and single-host SQLite. Independent OIDC, native participation, remote MCP and Participation Steward are later phases subject to privacy/security review.
 
 ## Brand Commitments
 User-approved Ukrainian name and a restrained technical workspace in the spirit of Linear and GitHub; no copying proprietary visual assets. Ukrainian is the default language.

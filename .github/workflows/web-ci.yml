@@ -37,7 +37,7 @@ jobs:
         with:
           node-version: '22'
       - name: Install dependencies
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
       - name: TypeScript
         run: npm run typecheck
       - name: Unit tests
@@ -46,6 +46,8 @@ jobs:
         run: npm run build
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
+      - name: Private queue integration (stub GitHub)
+        run: npm run test:queue
       - name: Desktop and mobile browser checks
         run: npm run test:e2e
       - name: Upload browser evidence
@@ -56,13 +58,5 @@ jobs:
           path: |
             web/test-results/
             web/playwright-report/
-          if-no-files-found: ignore
-          retention-days: 14
-      - name: Upload resolved dependency lock for review
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: uagp-web-package-lock
-          path: web/package-lock.json
           if-no-files-found: ignore
           retention-days: 14

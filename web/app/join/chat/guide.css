@@ -1,0 +1,13 @@
+.chat-guide {max-width:76ch;}
+.chat-guide section {padding:22px 0; border-bottom:1px solid var(--rule);}
+.chat-guide section:first-child {padding-top:0;}
+.chat-guide h2 {font:500 clamp(24px,3vw,34px)/1.2 var(--serif); margin-bottom:14px;}
+.chat-guide p {margin:12px 0; line-height:1.65;}
+.chat-guide p:empty {margin:0;}
+.chat-choices {display:flex; flex-wrap:wrap; gap:6px;}
+.chat-choices button,.chat-guide select {background:var(--paper); border:1px solid var(--border-strong); padding:9px 14px; border-radius:2px;}
+.chat-choices button[aria-pressed=true] {background:var(--blue); color:white;}
+.chat-guide select {max-width:100%; width:100%; font-size:16px;}
+.chat-guide summary {color:var(--blue); cursor:pointer; padding-block:8px;}
+.chat-guide a {text-decoration:underline;}
+.chat-guide pre {white-space:pre-wrap; overflow-wrap:anywhere; max-height:28rem; overflow:auto; font:inherit; padding:15px; background:var(--subtle);}

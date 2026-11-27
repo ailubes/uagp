@@ -6,15 +6,19 @@
     "colorMeta": {
       "primary": {
         "role": "primary",
-        "displayName": "Quiet civic indigo"
+        "displayName": "Atlas ultramarine"
       },
       "surface": {
         "role": "neutral",
-        "displayName": "White workspace"
+        "displayName": "Warm paper"
       },
       "sidebar": {
         "role": "neutral",
-        "displayName": "Cool paper"
+        "displayName": "Atlas paper"
+      },
+      "primary-soft": {
+        "role": "accent surface",
+        "displayName": "Workspace selection surface"
       },
       "ink": {
         "role": "neutral",
@@ -31,6 +35,18 @@
       "caution": {
         "role": "semantic",
         "displayName": "Snapshot caution"
+      },
+      "atlas-paper": {
+        "role": "neutral",
+        "displayName": "Atlas paper"
+      },
+      "atlas-ink": {
+        "role": "neutral",
+        "displayName": "Atlas ink"
+      },
+      "atlas-blue": {
+        "role": "primary",
+        "displayName": "Atlas ultramarine"
       }
     },
     "motion": [
@@ -46,8 +62,8 @@
         "value": "1250px"
       },
       {
-        "name": "overview-stack",
-        "value": "1080px"
+        "name": "register-mobile-nav",
+        "value": "700px"
       },
       {
         "name": "mobile-nav",
@@ -66,7 +82,7 @@
       "refersTo": "button-primary",
       "description": "Start a voluntary action",
       "html": "<button class=\"ds-primary\">Запропонувати ідею</button>",
-      "css": ".ds-primary {background:#5547b8;color:#fff;border:1px solid #5547b8;border-radius:8px;padding:8px 13px;font:600 13px/1.4 system-ui;min-height:36px}.ds-primary:hover{background:#4537a4}.ds-primary:focus-visible{outline:2px solid #7062cd;outline-offset:3px}"
+      "css": ".ds-primary {background:#233fa0;color:#fff;border:1px solid #233fa0;border-radius:2px;padding:8px 13px;font:600 13px/1.4 system-ui;min-height:40px}.ds-primary:hover{background:#172c7a}.ds-primary:focus-visible{outline:2px solid #233fa0;outline-offset:3px}"
     },
     {
       "name": "Secondary action",
@@ -74,21 +90,21 @@
       "refersTo": "button-secondary",
       "description": "Read or inspect source",
       "html": "<button class=\"ds-secondary\">Переглянути GitHub</button>",
-      "css": ".ds-secondary{background:#fff;color:#20232e;border:1px solid #c9cdd6;border-radius:8px;padding:8px 13px;font:600 13px/1.4 system-ui;min-height:36px}.ds-secondary:hover{background:#f2f3f6}.ds-secondary:focus-visible{outline:2px solid #7062cd;outline-offset:3px}"
+      "css": ".ds-secondary{background:#f8f6ed;color:#202720;border:1px solid #a0a698;border-radius:2px;padding:8px 13px;font:600 13px/1.4 system-ui;min-height:40px}.ds-secondary:hover{background:#f2f3f6}.ds-secondary:focus-visible{outline:2px solid #233fa0;outline-offset:3px}"
     },
     {
       "name": "Selected navigation",
       "kind": "nav",
       "description": "Current workspace section",
       "html": "<a class=\"ds-nav\" href=\"#issues\">Відкриті питання</a>",
-      "css": ".ds-nav{display:block;background:#eeebfa;color:#5547b8;border-radius:6px;padding:8px 10px;font:650 13px/1.4 system-ui;text-decoration:none}.ds-nav:focus-visible{outline:2px solid #7062cd;outline-offset:3px}"
+      "css": ".ds-nav{display:block;background:#e7eaf6;color:#233fa0;border-radius:2px;padding:8px 10px;font:650 13px/1.4 system-ui;text-decoration:none}.ds-nav:focus-visible{outline:2px solid #233fa0;outline-offset:3px}"
     },
     {
       "name": "Search",
       "kind": "input",
       "description": "Search public records",
       "html": "<input class=\"ds-search\" type=\"search\" placeholder=\"Назва або #номер\" aria-label=\"Пошук\">",
-      "css": ".ds-search{border:1px solid #c9cdd6;border-radius:8px;padding:10px 12px;font:14px system-ui;background:#fff;color:#20232e}.ds-search:focus{border-color:#7062cd;outline:2px solid #eeebfa}"
+      "css": ".ds-search{border:1px solid #a0a698;border-radius:2px;padding:10px 12px;font:14px system-ui;background:#f8f6ed;color:#202720}.ds-search:focus{border-color:#233fa0;outline:2px solid #e7eaf6}"
     },
     {
       "name": "Draft state",
@@ -102,17 +118,18 @@
       "kind": "custom",
       "description": "Dated snapshot fallback",
       "html": "<div class=\"ds-source\">Збережений знімок · статуси можуть бути застарілими</div>",
-      "css": ".ds-source{border:1px solid #e9d8b6;background:#fff9ed;color:#795410;border-radius:8px;padding:10px 13px;font:11.5px/1.55 system-ui}"
+      "css": ".ds-source{border:1px solid #e9d8b6;background:#fff9ed;color:#795410;border-radius:2px;padding:10px 13px;font:11.5px/1.55 system-ui}"
     }
   ],
   "narrative": {
-    "northStar": "Відкритий журнал спільної роботи",
-    "overview": "Restrained technical workspace approved by the project owner, with source-grounded statuses and real contribution routes.",
+    "northStar": "Атлас участі та Робочий реєстр",
+    "overview": "An illustrated civic atlas leads readers into a searchable public issue register.",
     "keyCharacteristics": [
       "Ukrainian UI",
-      "Flat neutral workspace",
-      "Explicit source and status",
-      "Accessible interaction"
+      "An illustrated paper-and-ink atlas with Lora headings",
+      "A ruled issue register sharing the atlas palette, type and navigation",
+      "Dated data sources",
+      "Keyboard-accessible search and filters"
     ],
     "rules": [
       {
