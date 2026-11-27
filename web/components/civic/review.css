@@ -1,0 +1,17 @@
+.queue-flow {max-width:75ch;}
+.queue-flow section,.queue-flow form {padding-block:18px; border-bottom:1px solid var(--rule);}
+.queue-flow h2 {font:500 clamp(23px,3vw,32px)/1.25 var(--serif); margin:0 0 12px; overflow-wrap:anywhere;}
+.queue-flow p {margin:8px 0 14px;}
+.queue-flow input:not([type=checkbox]),.queue-flow textarea {width:100%;padding:11px;border:1px solid var(--border-strong);background:#fcfbf5;border-radius:2px;font-size:16px;}
+.queue-flow .queue-check {display:flex;gap:10px;align-items:flex-start;margin:14px 0;}
+.queue-flow .queue-check input {width:18px;height:18px;margin-top:3px;flex:none;}
+.queue-flow .button {align-self:start;}
+.queue-flow .queue-phase {font-weight:700;color:var(--blue);}
+.queue-flow [role=alert] {padding:12px;border:1px solid var(--rule);color:#88331b;}
+.queue-text,.queue-history p {white-space:pre-wrap;overflow-wrap:anywhere;}
+.queue-paper a {display:inline-block;margin-top:15px;color:var(--blue);text-decoration:underline;}
+.queue-history {padding-inline-start:20px;}
+.queue-history time,.queue-list span {font-size:12px;color:var(--dim);}
+.queue-list {padding:0;list-style:none;}
+.queue-list li {padding:12px 0;display:grid;gap:4px;border-bottom:1px solid var(--rule);}
+.queue-list button {text-align:left;padding:4px 0;color:var(--blue);overflow-wrap:anywhere;}
